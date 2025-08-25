@@ -1,1 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
 
+<!-- Favicon support for all devices and browsers -->
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="shortcut icon" href="favicon.ico">
+  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Robert Does </title>
+
+  <!-- GOOGLE ADSENSE -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5529703940567578" crossorigin="anonymous"></script>
+
+  <!-- GOOGLE ANALYTICS (GA4) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0VLVXYJ4LL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-0VLVXYJ4LL');
+  </script>
+
+  <style>
+    :root{
+      --avatar: 180px; --ring: 6px; --overlap: 90px; --gap: 10px;
+      --chip-pad-y: 3px; --chip-pad-x: 14px;
+    }
+    body{ margin:0; font-family: Arial, sans-serif; background:linear-gradient(to bottom,#fff,#000); color:#000; text-align:center; }
+    .container{ max-width:700px; margin:0 auto; padding:20px; }
+    hr{ border:none; height:1px; background:#000; margin:20px auto; width:100%; }
+
+    .header-wrap{ background:#000; }
+    .header-wrap img{ display:block; width:100%; height:auto; }
+
+    .profile-stack{ margin-top: calc(-1 * var(--overlap)); text-align:center; }
+    .avatar{ width:var(--avatar); height:var(--avatar); border-radius:50%; object-fit:cover; border:var(--ring) solid #000; background:#000; box-shadow:0 4px 18px rgba(0,0,0,.25); }
+    .profile-name{ margin: var(--gap) 0 0 0; font-size:36px; font-weight:700; }
+
+    .link-chip-wrap{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:12px auto 6px; max-width:600px; }
+    .link-chip{ display:inline-block; padding:var(--chip-pad-y) var(--chip-pad-x); background:#eee; border:2px solid #fff; border-radius:30px; font-weight:bold; text-decoration:none; color:#000; box-shadow:0 2px 6px rgba(0,0,0,.08); font-size:15px; line-height:1; }
+    .link-chip:hover{ filter:brightness(.98); }
+
+    .icons{ display:flex; justify-content:center; gap:20px; margin:15px 0; }
+    .icons img{ width:60px; height:60px; border-radius:50%; }
+
+    .link-button{ background:#eee; border:2px solid #fff; margin:8px auto; padding:5px 5px; width:90%; max-width:600px; box-sizing:border-box; border-radius:30px; display:flex; align-items:center; justify-content:center; gap:10px; text-decoration:none; color:#000; font-weight:bold; box-shadow:0 4px 10px rgba(0,0,0,.12); }
+    .link-button img{ width:60px; height:60px; object-fit:cover; border-radius:50%; display:block; margin-right:20px; }
+    .link-text{ flex:1; text-align:center; }
+
+    .link-button.link-compact{ padding:3px 13px; gap:0; }
+    #open-brand{ width:90%; max-width:600px; box-sizing:border-box; }
+
+    .modal-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; align-items:center; justify-content:center; z-index:9999; }
+    .modal-overlay.open{ display:flex; }
+    .modal-window{ width:min(92vw,560px); max-height:80vh; background:#fff; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.35); overflow:hidden; display:flex; flex-direction:column; text-align:left; }
+    .modal-header{ display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:#000; color:#fff; }
+    .modal-title{ margin:0; font-size:18px; }
+    .modal-close{ cursor:pointer; border:none; background:transparent; color:#fff; font-size:22px; line-height:1; padding:4px 8px; }
+    .modal-body{ padding:14px 16px; overflow:auto; text-align: center; }
+    .modal-window.blog-size{ height:70vh; }
+    .modal-window.blog-size .modal-body{ overflow:auto; }
+
+    .form-row{ display:flex; flex-direction:column; gap:6px; margin:10px 0; }
+    .modal-input,.modal-textarea,.form-row input,.form-row textarea{ width:100%; border:1px solid #ddd; border-radius:10px; padding:10px 12px; font:inherit; box-sizing:border-box; }
+    .modal-textarea,.form-row textarea{ min-height:140px; resize:vertical; }
+    .modal-actions{ display:flex; justify-content:flex-end; gap:10px; padding:10px 16px 16px; }
+    .btn{ border:none; border-radius:22px; padding:10px 16px; font-weight:700; cursor:pointer; }
+    .btn-primary{ background:#111; color:#fff; }
+
+    .field-error{ color:#c83939; font-size:13px; margin-top:6px; min-height:14px; }
+.profile-name {
+  margin-bottom: 1px;
+}
+
+.container p {
+  margin-top: 4px;
+  margin-bottom: 12px;
+}
+    .toast{ position:fixed; left:50%; top:18%; transform:translateX(-50%); z-index:10000; background:#fff; border:2px solid #000; border-radius:12px; width:min(92vw,520px); overflow:hidden; display:none; }
+    .toast.open{ display:block; }
+    .toast .toast-head{ background:#000; color:#fff; padding:10px 14px; font-weight:700; }
+    .toast .toast-body{ padding:14px; }
+
+    @media (max-width:640px){
+      :root{ --avatar:160px; --overlap:80px; --gap:8px; }
+      .profile-name{ font-size:30px; }
+      .link-chip{ font-size:14px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="header-wrap"><img src="/header-photo.jpeg" alt="Header banner"></div>
+  <div class="profile-stack">
+    <img class="avatar" src="/profile-icon.jpeg" alt="Profile picture">
+    <h1 class="profile-name">Robert Does</h1>
+  </div>
+
+  <div class="container">
+    <p style="font-size:16px;">📍Los Angeles 🧔🏽‍♂️Guy Next Door <br>💯Daddy-Approved™</p>
+
+    <div class="link-chip-wrap">
+      <a class="link-chip" href="#" id="open-about">ABOUT ME 💡</a>
+      <a class="link-chip" href="#" id="open-travel">TRAVEL DATES ✈️</a>
+      <a class="link-chip" href="#" id="open-updates">UPDATES / NEWS</a>
+      <a class="link-chip" href="#" id="open-blog">BLOG</a>
+    </div>
+
+    <hr>
+
+    <div style="margin:20px auto;max-width:320px;">
+      <ins class="adsbygoogle" style="display:inline-block;width:320px;height:100px" data-ad-client="ca-pub-5529703940567578" data-ad-slot="2932021685"></ins>
+      <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+    </div>
+
+    <hr>
+
+    <div class="icons">
+      <a href="https://www.paypal.me/RobertDoes"><img src="/paypal-icon.jpeg" alt="PayPal"></a>
+      <a href="https://cash.app/$RobertDoes"><img src="/cashapp-icon.jpeg" alt="CashApp"></a>
+    </div>
+
+   <a class="link-button" href="https://onlyfans.com/nextdoorrobert">
+  <img src="/of.png" alt="OnlyFans"><div class="link-text">OnlyFans</div>
+</a>
+
+    <a class="link-button" href="https://justfor.fans/nextdoorrobert">
+      <img src="/jff.png" alt="Just For Fans"><div class="link-text">Just For Fans</div>
+    </a>
+
+    <a class="link-button" href="https://rentmasseur.com/Robert_Does">
+      <img src="/rentmass-icon.png" alt="RentMasseur"><div class="link-text">Book a massage 💆🏽‍♂️</div>
+    </a> 
+    
+    <a class="link-button" href="https://throne.com/nextdoorrobert">
+      <img src="/throne.png" alt="Throne"><div class="link-text">🎁🎁 Spoil Me 🎁🎁</div>
+    </a>
+
+    <a class="link-button" href="https://nextdoorrobert.creator-spring.com">
+      <img src="/merch.png" alt="Spring"><div class="link-text">Oh! He has Merch! 👕</div>
+    </a>
+
+    <a class="link-button" href="https://join.plaiir.com/BHhftluH0Ub">
+      <img src="/plaiir-icon.png" alt="Plaiir"><div class="link-text">🎥 Creators Hit Me Up 🎬<br>@nextdoorrobert</div>
+    </a>
+
+    <a class="link-button link-compact" href="#" id="open-brand">
+      <div class="link-text">👉🏽 👉🏽 BRAND /OTHER INQUIRIES 👈🏽 👈🏽</div>
+    </a>
+
+    <hr>
+
+    <div style="margin:40px auto 20px;max-width:320px;">
+      <ins class="adsbygoogle" style="display:inline-block;width:320px;height:100px" data-ad-client="ca-pub-5529703940567578" data-ad-slot="2932021685"></ins>
+      <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+    </div>
+
+    <hr>
+  </div>
+
+  <div class="container">
+    <div style="margin:10px auto 40px;">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-5529703940567578" data-ad-slot="1663172040" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle=window.adsbygoogle||[]).push({});</script>
+    </div>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal-overlay" id="about-modal" aria-hidden="true" role="dialog" aria-labelledby="about-title">
+  <div class="modal-window">
+    <div class="modal-header">
+      <h3 class="modal-title" id="about-title">About Me 💡</h3>
+      <button class="modal-close" data-close="about" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" style="text-align: center;">
+      <h3 style="text-decoration: underline; font-weight: bold; margin-top: 0;">Hey there, I’m Robert.</h3>
+      <p>Think of me as your 6’1”, 210 lbs guy next door. I share my life through videos, pictures, and clever captions. That means gym progress pics, travel dates (I love to travel ✈️), mental health check-ins, and reflections along my sobriety path.</p>
+      <br>
+      <p>I’m building a small creator business and using this site as a launch pad for everything I’m manifesting. Check out all of my main links🔗, ways to support, and the occasional merch drop. Thanks for being here 💆🏽‍♂️ p🙏🏽</p>
+    </div>
+  </div>
+</div>
+
+  <div class="modal-overlay" id="travel-modal" aria-hidden="true" role="dialog" aria-labelledby="travel-title">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title" id="travel-title">Upcoming Travel ✈️</h3>
+        <button class="modal-close" data-close="travel" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <ul style="list-style: none; padding-left: 0; margin-top: 10px;">
+          <li><strong>Palm Springs, CA</strong><br>Aug 29 – Sep 4, 2025</li>
+          <li><strong>Denver, CO</strong><br>Sep 5 – Sep 11, 2025</li>
+          <li><strong>Miami, FL</strong><br>Sep 11 – Sep 18, 2025</li>
+          <li><strong>Madrid, Spain</strong><br>Sep 19 – Sep 26, 2025</li>
+        </ul>
+        <p style="margin-top: 15px;">
+          Want me to visit your city?<br>
+          <strong>Shoot me an inquiry and let me know.</strong><br>
+          <em>Link at the bottom of the page.</em>
+        </p>
+      </div>
+    </div>
+  </div>
+
+<div class="modal-overlay" id="updates-modal" aria-hidden="true" role="dialog" aria-labelledby="updates-title">
+  <div class="modal-window">
+    <div class="modal-header">
+      <h3 class="modal-title" id="updates-title">Updates / News</h3>
+      <button class="modal-close" data-close="updates" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body" style="text-align: center;">
+      <h3 style="text-decoration: underline; margin-bottom: 16px;">Extra! Extra! Read all about it!</h3>
+      <p style="font-size: 20px;">😍 <strong>I HAVE MERCH!</strong> 😍</p>
+      <p>Go get your <em>“Daddy Approved™”</em><br>T-shirts, sweaters, stickers, and even a mug.</p>
+      <p><strong>My Puerto Vallarta video drops August 29.</strong><br>STAY TUNED! 🌴📹</p>
+    </div>
+  </div>
+</div>
+  
+
+<!-- BLOG ENTRY 1 -->
+<div class="modal-overlay" id="blog-modal" aria-hidden="true" role="dialog" aria-labelledby="blog-title">
+  <div class="modal-window blog-size">
+    <div class="modal-header">
+      <h3 class="modal-title" id="blog-title">BLOG</h3>
+      <button class="modal-close" data-close="blog" aria-label="Close">×</button>
+    </div>
+    <div class="modal-body">
+
+      <!-- BLOG ENTRY 1 -->
+      <div style="border: 1px solid black; border-radius: 10px; padding: 20px; margin-bottom: 20px; text-align: center;">
+        <h3 style="font-weight: bold; text-decoration: underline; margin-top: 0;">Editing Myself Into Exhaustion</h3>
+        <p>The thing about editing everything yourself… sometimes I just don’t have the motivation, and become exhausted staring at myself all the time. 😂😂</p>
+        <p>If I could barter my way through it, I would. But for now, it’s all me.</p>
+        <p>That being said, I’m getting better all the time,and im even teaching myself how to color correct. Fun right?😅</p>
+        <p>If you’re also learning (or struggling) and use DaVinci Resolve, this video might actually help 👇🏽</p>
+        <div style="margin-top: 20px;">
+          <iframe width="100%" height="315" src="https://www.youtube.com/embed/itli8isoXQQ" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <!-- BLOG ENTRY 2 -->
+      <div style="border: 1px solid black; border-radius: 10px; padding: 20px; margin-bottom: 20px; text-align: center;">
+        <h3 style="font-weight: bold; text-decoration: underline; margin-top: 0;">The Flavor of Life</h3>
+        <p>I’ve been really into watching cooking hacks lately… two or three ingredients… and then boom… chocolate cake. 🍫</p>
+        <p>I think I want to try making some Insta reels with my little chef’s hat and apron. I just wanna have fun — and have an excuse to eat chocolate 🤤</p>
+        <p>But I also need to get better lighting. UGH… the woes of creating content.</p>
+        <p>My inspo:</p>
+        <div style="margin-top: 20px;">
+          <iframe src="https://www.instagram.com/reel/DNW3Wf8RYx1/embed" width="100%" height="400" frameborder="0" scrolling="no" allowtransparency="true" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      <!-- BLOG ENTRY 3 -->
+      <div style="border: 1px solid black; border-radius: 10px; padding: 20px; margin-bottom: 20px; text-align: center;">
+        <h3 style="font-weight: bold; text-decoration: underline; margin-top: 0;">The Trouble with Gains</h3>
+        <p>Hey bro, check out this shameless mirror selfie. 😂</p>
+        <p>Real talk, I’m super insecure about my body sometimes.<br>
+        Posting pics of myself online isn’t about showing off <em>(it is 😏😝)</em>… but it’s also about accountability.</p>
+        <p>When I’m deep in a funk and start telling myself I look gross, I can scroll back, or take a new photo, and remind myself… I’m actually doing alright.</p>
+        <p>Am I where I want to be? Not yet. Maybe never.<br>
+        But I keep showing up. For my health, for work, and okay… the “occasional” fling. 😜</p>
+        <p>Lately, I’ve been trying to focus more on my glutes.<br>
+        If this guy doesn’t inspire you… I don’t know what will. My GAWD. 🍑🔥</p>
+        <div style="margin-top: 20px;">
+          <iframe src="https://www.instagram.com/reel/C8gA-hvxRYt/embed" width="100%" height="400" frameborder="0" scrolling="no" allowtransparency="true" allowfullscreen></iframe>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+  <div class="modal-overlay" id="brand-modal" aria-hidden="true" role="dialog" aria-labelledby="brand-title">
+    <div class="modal-window">
+      <div class="modal-header">
+        <h3 class="modal-title" id="brand-title">📱 ➡️ 📧</h3>
+        <button class="modal-close" data-close="brand" aria-label="Close">×</button>
+      </div>
+      <div class="modal-body">
+        <form id="brand-form" novalidate>
+          <div class="form-row">
+            <label for="brand-email">ENTER YOUR EMAIL:</label>
+            <input class="modal-input" type="email" id="brand-email" name="email" placeholder="How do I contact you?" required>
+            <div class="field-error" id="brand-email-error" aria-live="polite"></div>
+          </div>
+          <div class="form-row">
+            <label for="brand-name">YOUR NAME:</label>
+            <input class="modal-input" type="text" id="brand-name" name="name" placeholder="Who are you?" required>
+            <div class="field-error" id="brand-name-error" aria-live="polite"></div>
+          </div>
+          <div class="form-row">
+            <label for="brand-body">MESSAGE:</label>
+            <textarea class="modal-textarea" id="brand-body" name="message" placeholder="Will Daddy Approve?" required></textarea>
+            <div class="field-error" id="brand-message-error" aria-live="polite"></div>
+          </div>
+          <input type="text" id="brand-website" name="website" style="display:none" tabindex="-1" autocomplete="off">
+          <div class="modal-actions">
+            <button type="button" class="btn btn-primary" id="brand-send">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast-success" role="status" aria-live="polite">
+    <div class="toast-head">Success</div>
+    <div class="toast-body">All sent! Daddy Approved™</div>
+  </div>
+  <div class="toast" id="toast-error" role="alert" aria-live="assertive">
+    <div class="toast-head">Error</div>
+    <div class="toast-body">Oops… something went wrong. Try again later 😉</div>
+  </div>
+  
+  </div> <!-- end of icons -->
+
+<footer style="margin-top: 40px; text-align: center; font-size: 12px; color: #888;">
+<!-- Footer -->
+<div style="margin-top: 40px; text-align: center; font-size: 14px; color: #777;">
+  <p>
+    <a href="https://nextdoorrobert.github.io/test/privacy.html" target="_blank" style="margin: 0 10px; color: #777; text-decoration: underline;">Privacy Policy</a> |
+    <a href="https://nextdoorrobert.github.io/test/terms-of-service.html" target="_blank" style="margin: 0 10px; color: #777; text-decoration: underline;">Terms of Service</a> |
+    <a href="https://nextdoorrobert.github.io/test/disclaimer.html" target="_blank" style="margin: 0 10px; color: #777; text-decoration: underline;">Disclaimer</a>
+  </p>
+  <p style="margin-top: 20px; font-size: 12px; color: #aaa;">
+    © 2025 Robert Does / NextDoorRobert LLC. All rights reserved.
+  </p>
+</div>
+</footer>
+
+</body>
+</html>
+
+  <script>
+  (function(){
+    const $ = s => document.querySelector(s);
+    const $$ = s => document.querySelectorAll(s);
+
+    function lock(state){ document.documentElement.style.overflow = state ? 'hidden' : ''; document.body.style.overflow = state ? 'hidden' : ''; }
+    function openModal(el){ el.classList.add('open'); lock(true); }
+    function closeModal(el){ el.classList.remove('open'); lock(false); }
+
+    $('#open-about')?.addEventListener('click', e => { e.preventDefault(); openModal($('#about-modal')); });
+    $('#open-travel')?.addEventListener('click', e => { e.preventDefault(); openModal($('#travel-modal')); });
+    $('#open-updates')?.addEventListener('click', e => { e.preventDefault(); openModal($('#updates-modal')); });
+    $('#open-blog')?.addEventListener('click', e => { e.preventDefault(); openModal($('#blog-modal')); });
+    $('#open-brand')?.addEventListener('click', e => { e.preventDefault(); openModal($('#brand-modal')); });
+
+    $$('.modal-close').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const which = btn.dataset.close;
+        if(which==='about')   closeModal($('#about-modal'));
+        if(which==='travel')  closeModal($('#travel-modal'));
+        if(which==='updates') closeModal($('#updates-modal'));
+        if(which==='blog')    closeModal($('#blog-modal'));
+        if(which==='brand')   closeModal($('#brand-modal'));
+      });
+    });
+
+    $$('.modal-overlay').forEach(ov => ov.addEventListener('click', e => { if(e.target === ov) closeModal(ov); }));
+
+    window.addEventListener('keydown', e => {
+      if(e.key === 'Escape'){
+        ['about','travel','updates','blog','brand'].forEach(id=>{
+          const el = document.getElementById(id+'-modal');
+          if(el && el.classList.contains('open')) closeModal(el);
+        });
+      }
+    });
+
+    const ENDPOINT = 'https://script.google.com/macros/s/AKfycbzBQEjAu9w9kOcg3pP-FvmsLj8WjRnS8i5F2A7ow7fyoTN_a33b82LQztSK5Fao3KYzfw/exec';
+
+    const brandForm = $('#brand-form');
+    const btnSend   = $('#brand-send');
+    const nameEl    = $('#brand-name');
+    const emailEl   = $('#brand-email');
+    const msgEl     = $('#brand-body');
+    const hpEl      = $('#brand-website');
+
+    const errEmail  = $('#brand-email-error');
+    const errName   = $('#brand-name-error');
+    const errMsg    = $('#brand-message-error');
+
+    const toastOK   = $('#toast-success');
+    const toastErr  = $('#toast-error');
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    function showToast(el){ el.classList.add('open'); setTimeout(()=> el.classList.remove('open'), 2500); }
+    function setBusy(b){ btnSend.disabled = b; btnSend.textContent = b ? 'Sending…' : 'Send'; }
+    function clearErrors(){ [errEmail, errName, errMsg].forEach(el => { if (el) el.textContent = ''; }); }
+
+    btnSend?.addEventListener('click', async () => {
+      clearErrors();
+      const name = (nameEl?.value || '').trim();
+      const email = (emailEl?.value || '').trim();
+      const message = (msgEl?.value || '').trim();
+
+      let valid = true;
+      if (!email || !emailRegex.test(email)) { errEmail.textContent = 'you forgot this, how annoying!'; valid = false; }
+      if (!name) { errName.textContent = 'you forgot this, how annoying!'; valid = false; }
+      if (!message) { errMsg.textContent = 'you forgot this, how annoying!'; valid = false; }
+      if (!valid) return;
+      if (hpEl && hpEl.value) return;
+
+      setBusy(true);
+      try {
+        const fd = new FormData();
+        fd.append('name', name);
+        fd.append('email', email);
+        fd.append('message', message);
+
+        const res = await fetch(ENDPOINT, { method:'POST', body: fd });
+        let ok = false;
+        if (res.ok) {
+          try { ok = !!(await res.json()).ok; } catch { ok = true; }
+        }
+
+        if (ok) {
+          brandForm?.reset();
+          const m = $('#brand-modal');
+          if (m){ m.classList.remove('open'); document.documentElement.style.overflow=''; document.body.style.overflow=''; }
+          showToast(toastOK);
+        } else {
+          showToast(toastErr);
+        }
+      } catch (e) {
+        console.error(e);
+        showToast(toastErr);
+      } finally {
+        setTimeout(()=> setBusy(false), 3500);
+      }
+    });
+  })();
+  </script>
+</body>
+</html>
