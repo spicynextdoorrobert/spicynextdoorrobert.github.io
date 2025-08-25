@@ -113,25 +113,21 @@
     </div>
 
 <!-- ONLYFANS BUTTON + WARNING BOX -->
-<div id="onlyfans-wrapper" style="position: relative; text-align: center; margin-bottom: 20px;">
-  <!-- The OF Button -->
-  <button onclick="toggleSensitiveBox()" style="display: inline-flex; align-items: center; justify-content: center; padding: 14px 24px; font-size: 18px; border-radius: 999px; border: 2px solid black; background-color: white; cursor: pointer;">
-    <img src="/of.png" alt="OF" style="width: 24px; height: 24px; margin-right: 10px;">
-    OnlyFans
-  </button>
-
-  <!-- Sensitive Content Box (hidden by default) -->
-  <div id="sensitive-box" style="display: none; margin-top: 12px; padding: 20px; background: white; border: 1px solid black; border-radius: 14px; max-width: 500px; margin-left: auto; margin-right: auto; position: relative; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-    
-    <!-- Pointer / Tail -->
-    <div style="position: absolute; top: -12px; left: 40px; width: 0; height: 0; border-left: 12px solid transparent; border-right: 12px solid transparent; border-bottom: 12px solid white; filter: drop-shadow(0 -1px 0 black);"></div>
-
-    <h3 style="margin-top: 0; margin-bottom: 10px;">Sensitive Content</h3>
-    <p style="margin: 0 0 16px 0;">This link contains OnlyFans content, a platform limited to users and visitors of 18 and over.</p>
-    
-    <!-- Continue button -->
-    <a href="https://onlyfans.com/nextdoorrobert" target="_blank" style="display: inline-block; padding: 12px 24px; background: black; color: white; text-decoration: none; border-radius: 8px; font-weight: bold;">Continue</a>
+<div id="onlyfans-wrapper">
+  <a class="link-button" href="#" onclick="toggleSensitiveBox(event)">
+    <img src="/of.png" alt="OnlyFans">
+    <div class="link-text">OnlyFans</div>
+  </a>
+  <div id="sensitive-box" class="sensitive-warning" style="display: none;">
+    <div style="position: relative; border: 1px solid black; background: white; border-radius: 16px; padding: 16px; margin-top: 10px; text-align: center;">
+      <!-- Pointer tail -->
+      <div style="position: absolute; top: -10px; left: 40px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid black;"></div>
+      <strong>Sensitive Content</strong>
+      <p>This link contains OnlyFans content, a platform limited to users and visitors of 18 and over.</p>
+      <button onclick="window.open('https://onlyfans.com/nextdoorrobert', '_blank')" style="background-color: black; color: white; border: none; padding: 8px 24px; border-radius: 12px; font-size: 16px; margin-top: 10px;">Continue</button>
+    </div>
   </div>
+</div>
 </div>
 
 <script>
