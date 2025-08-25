@@ -1,97 +1,134 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="juicyads-site-verification" content="e0550dd4003a957895d4b80ae">
   <title>Robert Does — Spicy Link Hub</title>
-  <!-- Other meta tags or scripts you may already have -->
 
-<!-- Favicon support for all devices and browsers -->
-<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="manifest" href="site.webmanifest">
-<link rel="shortcut icon" href="favicon.ico">
-  
+  <!-- Favicon support for all devices and browsers -->
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="shortcut icon" href="favicon.ico">
+
   <style>
-    :root{
+    :root {
       --avatar: 180px; --ring: 6px; --overlap: 90px; --gap: 10px;
       --chip-pad-y: 3px; --chip-pad-x: 14px;
     }
-    body{ margin:0; font-family: Arial, sans-serif; background:linear-gradient(to bottom,#fff,#000); color:#000; text-align:center; }
-    .container{ max-width:700px; margin:0 auto; padding:20px; }
-    hr{ border:none; height:1px; background:#000; margin:20px auto; width:100%; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #fff, #000);
+      color: #000;
+      text-align: center;
+    }
 
-    .header-wrap{ background:#000; }
-    .header-wrap img{ display:block; width:100%; height:auto; }
+    .container { max-width: 700px; margin: 0 auto; padding: 20px; }
+    hr { border: none; height: 1px; background: #000; margin: 20px auto; width: 100%; }
+    .header-wrap { background: #000; position: relative; z-index: 1; }
+    .header-wrap img { display: block; width: 100%; height: auto; }
 
-    .profile-stack{ margin-top: calc(-1 * var(--overlap)); text-align:center; }
-    .avatar{ width:var(--avatar); height:var(--avatar); border-radius:50%; object-fit:cover; border:var(--ring) solid #000; background:#000; box-shadow:0 4px 18px rgba(0,0,0,.25); }
-    .profile-name{ margin: var(--gap) 0 0 0; font-size:36px; font-weight:700; }
+    .profile-stack { margin-top: calc(-1 * var(--overlap)); text-align: center; z-index: 1; position: relative; }
+    .avatar {
+      width: var(--avatar); height: var(--avatar); border-radius: 50%;
+      object-fit: cover; border: var(--ring) solid #000;
+      background: #000; box-shadow: 0 4px 18px rgba(0,0,0,.25);
+    }
+    .profile-name { margin: var(--gap) 0 0 0; font-size: 36px; font-weight: 700; }
 
-    .link-chip-wrap{ display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin:12px auto 6px; max-width:600px; }
-    .link-chip{ display:inline-block; padding:var(--chip-pad-y) var(--chip-pad-x); background:#eee; border:2px solid #fff; border-radius:30px; font-weight:bold; text-decoration:none; color:#000; box-shadow:0 2px 6px rgba(0,0,0,.08); font-size:15px; line-height:1; }
-    .link-chip:hover{ filter:brightness(.98); }
+    .link-chip-wrap {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      margin: 12px auto 6px; max-width: 600px;
+    }
+    .link-chip {
+      display: inline-block; padding: var(--chip-pad-y) var(--chip-pad-x);
+      background: #eee; border: 2px solid #fff; border-radius: 30px;
+      font-weight: bold; text-decoration: none; color: #000;
+      box-shadow: 0 2px 6px rgba(0,0,0,.08); font-size: 15px; line-height: 1;
+    }
+    .link-chip:hover { filter: brightness(.98); }
 
-    .icons{ display:flex; justify-content:center; gap:20px; margin:15px 0; }
-    .icons img{ width:60px; height:60px; border-radius:50%; }
+    .icons { display: flex; justify-content: center; gap: 20px; margin: 15px 0; }
+    .icons img { width: 60px; height: 60px; border-radius: 50%; }
 
-    .link-button{ background:#eee; border:2px solid #fff; margin:8px auto; padding:5px 5px; width:90%; max-width:600px; box-sizing:border-box; border-radius:30px; display:flex; align-items:center; justify-content:center; gap:10px; text-decoration:none; color:#000; font-weight:bold; box-shadow:0 4px 10px rgba(0,0,0,.12); }
-    .link-button img{ width:60px; height:60px; object-fit:cover; border-radius:50%; display:block; margin-right:20px; }
-    .link-text{ flex:1; text-align:center; }
+    .link-button {
+      background: #eee; border: 2px solid #fff; margin: 8px auto; padding: 5px 5px;
+      width: 90%; max-width: 600px; box-sizing: border-box;
+      border-radius: 30px; display: flex; align-items: center; justify-content: center;
+      gap: 10px; text-decoration: none; color: #000; font-weight: bold;
+      box-shadow: 0 4px 10px rgba(0,0,0,.12);
+    }
+    .link-button img {
+      width: 60px; height: 60px; object-fit: cover;
+      border-radius: 50%; display: block; margin-right: 20px;
+    }
+    .link-text { flex: 1; text-align: center; }
 
-    .link-button.link-compact{ padding:3px 13px; gap:0; }
-    #open-brand{ width:90%; max-width:600px; box-sizing:border-box; }
+    .link-button.link-compact { padding: 3px 13px; gap: 0; }
+    #open-brand { width: 90%; max-width: 600px; box-sizing: border-box; }
 
-    .modal-overlay{ position:fixed; inset:0; background:rgba(0,0,0,.6); display:none; align-items:center; justify-content:center; z-index:9999; }
-    .modal-overlay.open{ display:flex; }
-    .modal-window{ width:min(92vw,560px); max-height:80vh; background:#fff; border-radius:14px; box-shadow:0 10px 30px rgba(0,0,0,.35); overflow:hidden; display:flex; flex-direction:column; text-align:left; }
-    .modal-header{ display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:#000; color:#fff; }
-    .modal-title{ margin:0; font-size:18px; }
-    .modal-close{ cursor:pointer; border:none; background:transparent; color:#fff; font-size:22px; line-height:1; padding:4px 8px; }
-    .modal-body{ padding:14px 16px; overflow:auto; text-align: center; }
-    .modal-window.blog-size{ height:70vh; }
-    .modal-window.blog-size .modal-body{ overflow:auto; }
+    .profile-name { margin-bottom: 1px; }
+    .container p { margin-top: 4px; margin-bottom: 12px; }
 
-    .form-row{ display:flex; flex-direction:column; gap:6px; margin:10px 0; }
-    .modal-input,.modal-textarea,.form-row input,.form-row textarea{ width:100%; border:1px solid #ddd; border-radius:10px; padding:10px 12px; font:inherit; box-sizing:border-box; }
-    .modal-textarea,.form-row textarea{ min-height:140px; resize:vertical; }
-    .modal-actions{ display:flex; justify-content:flex-end; gap:10px; padding:10px 16px 16px; }
-    .btn{ border:none; border-radius:22px; padding:10px 16px; font-weight:700; cursor:pointer; }
-    .btn-primary{ background:#111; color:#fff; }
+    @media (max-width: 640px) {
+      :root { --avatar: 160px; --overlap: 80px; --gap: 8px; }
+      .profile-name { font-size: 30px; }
+      .link-chip { font-size: 14px; }
+    }
 
-    .field-error{ color:#c83939; font-size:13px; margin-top:6px; min-height:14px; }
-.profile-name {
-  margin-bottom: 1px;
-}
-
-.container p {
-  margin-top: 4px;
-  margin-bottom: 12px;
-}
-    .toast{ position:fixed; left:50%; top:18%; transform:translateX(-50%); z-index:10000; background:#fff; border:2px solid #000; border-radius:12px; width:min(92vw,520px); overflow:hidden; display:none; }
-    .toast.open{ display:block; }
-    .toast .toast-head{ background:#000; color:#fff; padding:10px 14px; font-weight:700; }
-    .toast .toast-body{ padding:14px; }
-
-    @media (max-width:640px){
-      :root{ --avatar:160px; --overlap:80px; --gap:8px; }
-      .profile-name{ font-size:30px; }
-      .link-chip{ font-size:14px; }
+    /* 🔥 FLOATING JUICYAD STYLES */
+    #juicy-float {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 250px;
+      z-index: 9999;
+      box-shadow: 0 0 12px rgba(0,0,0,0.5);
+    }
+    #juicy-float-close {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background: #000;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      font-size: 18px;
+      width: 28px;
+      height: 28px;
+      line-height: 26px;
+      cursor: pointer;
+      z-index: 10000;
     }
   </style>
 </head>
 <body>
-  <div class="header-wrap"><img src="/header-photo.jpeg" alt="Header banner"></div>
-  <div class="profile-stack">
-    <img class="avatar" src="/profile-icon.jpeg" alt="Profile picture">
-    <h1 class="profile-name">Robert Does</h1>
-  </div>
 
-  <div class="container">
-    <p style="font-size:16px;">📍Los Angeles 🧔🏽‍♂️Guy Next Door <br>💯Daddy-Approved™</p>
+<!-- ✅ JUICYAD FLOATING VIDEO AD BLOCK -->
+<div id="juicy-float">
+  <button id="juicy-float-close" onclick="document.getElementById('juicy-float').style.display='none'">×</button>
+  <script async data-cfasync="false" src="https://js.juicyads.com/jads.js"></script>
+  <ins id="1178720" data-width="300" data-height="250">
+    <script>
+      (adsbyjuicy = window.adsbyjuicy || []).push({
+        "adzone": "1099777"
+      });
+    </script>
+  </ins>
+</div>
+
+<!-- Your regular page content starts below -->
+<div class="header-wrap"><img src="/header-photo.jpeg" alt="Header banner"></div>
+<div class="profile-stack">
+  <img class="avatar" src="/profile-icon.jpeg" alt="Profile picture">
+  <h1 class="profile-name">Robert Does</h1>
+</div>
+<div class="container">
+  <p style="font-size:16px;">📍Los Angeles 🧔🏽‍♂️Guy Next Door <br>💯Daddy-Approved™</p>
 
     <div class="link-chip-wrap">
       <a class="link-chip" href="#" id="open-about">ABOUT ME 💡</a>
