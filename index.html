@@ -114,28 +114,31 @@
 
 <!-- ONLYFANS BUTTON + WARNING BOX -->
 <div id="onlyfans-wrapper">
-  <a class="link-button" href="#" onclick="toggleSensitiveBox(event)">
+  <a href="#" class="link-button" onclick="toggleSensitiveBox(event)">
     <img src="/of.png" alt="OnlyFans">
     <div class="link-text">OnlyFans</div>
   </a>
-  <div id="sensitive-box" class="sensitive-warning" style="display: none;">
-    <div style="position: relative; border: 1px solid black; background: white; border-radius: 16px; padding: 16px; margin-top: 10px; text-align: center;">
-      <!-- Pointer tail -->
+
+  <div id="sensitive-box" style="display: none; margin-top: 10px;">
+    <div style="position: relative; border: 1px solid black; background: white; border-radius: 16px; padding: 16px; text-align: center;">
+      <!-- Tail / Pointer -->
       <div style="position: absolute; top: -10px; left: 40px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid black;"></div>
       <strong>Sensitive Content</strong>
-      <p>This link contains OnlyFans content, a platform limited to users and visitors of 18 and over.</p>
-      <button onclick="window.open('https://onlyfans.com/nextdoorrobert', '_blank')" style="background-color: black; color: white; border: none; padding: 8px 24px; border-radius: 12px; font-size: 16px; margin-top: 10px;">Continue</button>
+      <p style="margin: 8px 0 16px;">This link contains OnlyFans content, a platform limited to users and visitors of 18 and over.</p>
+      <button onclick="window.open('https://onlyfans.com/nextdoorrobert', '_blank')" style="background-color: black; color: white; border: none; padding: 8px 24px; border-radius: 12px; font-size: 16px;">Continue</button>
     </div>
   </div>
 </div>
-</div>
 
 <script>
-  function toggleSensitiveBox() {
+  function toggleSensitiveBox(event) {
+    event.preventDefault(); // Prevent scroll to top
     const box = document.getElementById("sensitive-box");
     box.style.display = box.style.display === "none" ? "block" : "none";
   }
 </script>
+
+    
 
     <a class="link-button" href="https://justfor.fans/nextdoorrobert">
       <img src="/jff.png" alt="Just For Fans"><div class="link-text">Just For Fans</div>
