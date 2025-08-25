@@ -412,5 +412,80 @@
     });
   })();
   </script>
+
+<!-- ENTRY POPUP OVERLAY -->
+<div id="entry-popup">
+  <div id="popup-box">
+    <div id="popup-content">
+      <!-- You can add whatever content or ad code here later -->
+    </div>
+    <button id="popup-close" aria-label="Close">✕</button>
+  </div>
+</div>
+
+<style>
+  #entry-popup {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 700px; /* match container width */
+    height: calc(var(--avatar) + var(--overlap));
+    z-index: 9998;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    pointer-events: none;
+  }
+
+  #popup-box {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.0); /* transparent box */
+    border-radius: 0;
+    padding: 0;
+    pointer-events: auto;
+  }
+
+  #popup-content {
+    width: 100%;
+    height: 100%;
+    /* Insert your own styling/content later */
+  }
+
+  #popup-close {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #000;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+</style>
+
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    const popup = document.getElementById('entry-popup');
+    const closeBtn = document.getElementById('popup-close');
+    if (popup && closeBtn) {
+      popup.style.display = 'flex';
+      closeBtn.addEventListener('click', () => {
+        popup.style.display = 'none';
+      });
+    }
+  });
+</script>
+
 </body>
 </html>
