@@ -195,9 +195,46 @@
   }
 </script>
 
-    <a class="link-button" href="https://rentmasseur.com/Robert_Does">
-      <img src="/rentmass-icon.png" alt="RentMasseur"><div class="link-text">Book a massage 💆🏽‍♂️</div>
-    </a> 
+    <!-- RENTMASSEUR BUTTON + WARNING BOX -->
+<div id="rentmasseur-wrapper">
+  <a href="#" class="link-button" onclick="toggleRentBox(event)">
+    <img src="/rentmass-icon.png" alt="RentMasseur">
+    <div class="link-text">Book a massage 🧖🏽‍♂️</div>
+  </a>
+
+  <div id="rent-box" style="display: none; margin-top: 10px;">
+    <div style="position: relative; border: 1px solid black; background: white; border-radius: 16px; padding: 16px; text-align: center;">
+      
+      <!-- Tail / Pointer -->
+      <div style="position: absolute; top: -10px; left: 40px; width: 0; height: 0; border-left: 10px solid transparent; border-right: 10px solid transparent; border-bottom: 10px solid black;"></div>
+      
+      <strong>Sensitive Content</strong>
+      <p style="margin: 8px 0 16px;">This link contains massage content that may include nudity and adult themes. Viewer discretion advised.</p>
+      
+      <!-- Continue button -->
+      <button onclick="window.open('https://rentmasseur.com/Robert_Does', '_blank')" style="background-color: black; color: white; border: none; padding: 8px 24px; border-radius: 12px; font-size: 16px;">Continue</button>
+      
+      <!-- JuicyAds Banner -->
+      <div style="margin-top: 16px;">
+        <!-- JuicyAds v3.0 -->
+        <script type="text/javascript" data-cfasync="false" async src="https://poweredby.jads.co/js/jads.js"></script>
+        <ins id="1099794" data-width="300" data-height="100"></ins>
+        <script type="text/javascript" data-cfasync="false" async>
+          (adsbyjuicy = window.adsbyjuicy || []).push({'adzone':1099794});
+        </script>
+        <!--JuicyAds END-->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function toggleRentBox(event) {
+    event.preventDefault(); // Prevent scroll to top
+    const box = document.getElementById("rent-box");
+    box.style.display = box.style.display === "none" ? "block" : "none";
+  }
+</script>
     
     <a class="link-button" href="https://throne.com/nextdoorrobert">
       <img src="/throne.png" alt="Throne"><div class="link-text">🎁🎁 Spoil Me 🎁🎁</div>
