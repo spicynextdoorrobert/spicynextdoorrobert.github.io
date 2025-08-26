@@ -507,7 +507,7 @@
   Daddy Approved™
 </p>
 
-<!-- Page View Counter -->
+<!-- Page View Counter (Pinned to Header Image) -->
 <style>
   #page-counter {
     position: absolute;
@@ -524,7 +524,7 @@
     pointer-events: none;
   }
 
-  .header-image {
+  .top-section {
     position: relative;
   }
 </style>
@@ -549,7 +549,7 @@
     counterBox.id = 'page-counter';
     counterBox.textContent = `${getInitialCount().toLocaleString()} views`;
 
-    const header = document.querySelector('.header-image') || document.querySelector('.header-wrapper') || document.querySelector('header') || document.body;
+    const header = document.querySelector('.top-section');
     if (header) {
       header.style.position = 'relative';
       header.appendChild(counterBox);
