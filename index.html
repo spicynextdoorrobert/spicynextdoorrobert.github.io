@@ -507,24 +507,24 @@
   Daddy Approved™
 </p>
 
-<!-- PAGE VIEW COUNTER -->
+<!-- Page View Counter -->
 <style>
   #page-counter {
     position: absolute;
-    bottom: 16px;
-    left: 16px;
+    bottom: 12px;
+    left: 12px;
     background-color: rgba(0, 0, 0, 0.85);
     color: #fff;
     font-size: 14px;
     padding: 6px 12px;
     border-radius: 50px;
-    z-index: 9999;
+    z-index: 999;
     font-family: sans-serif;
     box-shadow: 0 0 6px rgba(0,0,0,0.3);
     pointer-events: none;
   }
 
-  .header-wrapper {
+  .header-image {
     position: relative;
   }
 </style>
@@ -541,10 +541,7 @@
     let count = getInitialCount();
     count += 2;
     localStorage.setItem(COUNTER_KEY, count);
-    const counter = document.getElementById('page-counter');
-    if (counter) {
-      counter.textContent = `${count.toLocaleString()} views`;
-    }
+    document.getElementById('page-counter').innerText = `${count.toLocaleString()} views`;
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -552,8 +549,11 @@
     counterBox.id = 'page-counter';
     counterBox.textContent = `${getInitialCount().toLocaleString()} views`;
 
-    const header = document.querySelector('.header-wrapper') || document.querySelector('header') || document.body;
-    header.appendChild(counterBox);
+    const header = document.querySelector('.header-image') || document.querySelector('.header-wrapper') || document.querySelector('header') || document.body;
+    if (header) {
+      header.style.position = 'relative';
+      header.appendChild(counterBox);
+    }
 
     updateCounter();
   });
