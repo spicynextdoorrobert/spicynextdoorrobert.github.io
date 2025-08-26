@@ -507,6 +507,57 @@
   Daddy Approved™
 </p>
 
+<!-- Page View Counter -->
+<style>
+  #page-counter {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background-color: rgba(0, 0, 0, 0.75);
+    color: white;
+    font-size: 14px;
+    padding: 6px 12px;
+    border-radius: 20px;
+    z-index: 20;
+    font-family: sans-serif;
+    box-shadow: 0 0 6px rgba(0,0,0,0.3);
+  }
+
+  .header-wrapper {
+    position: relative;
+  }
+</style>
+
+<script>
+  const COUNTER_KEY = 'robert_page_counter';
+
+  function getInitialCount() {
+    const stored = localStorage.getItem(COUNTER_KEY);
+    return stored ? parseInt(stored) : 15469;
+  }
+
+  function updateCounter() {
+    let count = getInitialCount();
+    count += 2;
+    localStorage.setItem(COUNTER_KEY, count);
+    document.getElementById('page-counter').innerText = `${count.toLocaleString()} views`;
+  }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const counterBox = document.createElement('div');
+    counterBox.id = 'page-counter';
+    counterBox.textContent = `${getInitialCount().toLocaleString()} views`;
+
+    const header = document.querySelector('.header-wrapper') || document.querySelector('header');
+    if (header) {
+      header.style.position = 'relative';
+      header.appendChild(counterBox);
+    }
+
+    updateCounter();
+  });
+</script>
+  
 </body>
 </html>
 
