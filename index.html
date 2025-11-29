@@ -148,7 +148,7 @@
 <!-- ONLYFANS BUTTON + WARNING BOX -->
     
 <div id="onlyfans-wrapper">
-  <a href="#" class="link-button" onclick="toggleSensitiveBox(event)">
+  <a href="javascript:void(0)" class="link-button" onclick="toggleVIP(event)">VIP</a>
     <img src="/of.png" alt="OnlyFans">
     <div class="link-text">OnlyFans PPV </div>
   </a>
@@ -180,11 +180,13 @@
 </div>
 
 <script>
-  function toggleSensitiveBox(event) {
-    event.preventDefault(); // Prevent scroll to top
-    const box = document.getElementById("sensitive-box");
-    box.style.display = box.style.display === "none" ? "block" : "none";
-  }
+function toggleVIP(event) {
+    event.preventDefault(); // Stops scrolling
+    const vipBox = document.getElementById('vip-modal'); // Your VIP modal
+    if (vipBox) {
+        vipBox.style.display = vipBox.style.display === 'block' ? 'none' : 'block';
+    }
+}
 </script>
 
 <!-- JFF BUTTON + WARNING BOX -->
